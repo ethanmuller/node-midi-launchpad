@@ -22,7 +22,26 @@ var Launchpad = function(port, initAnimation) {
 
     // Some variables
     this._grid = [];
+    this._grid._blinking = [];
     var that = this;
+
+    this._grid._totalTicks = 0;
+
+    this._grid._tick = function() {
+      if (that._grid._totalTicks % 2) {
+        // blink off
+        for (var i = 0; i < that._grid._blinking.length; i++) {
+          that._grid._blinking[i].dark();
+        } 
+      } else {
+        // blink on
+        for (var i = 0; i < that._grid._blinking.length; i++) {
+          that._grid._blinking[i].light(that._grid._blinking[i]._blinkColor);
+        } 
+      }
+
+      that._grid._totalTicks += 1
+    }
 
 
     this.specials = {

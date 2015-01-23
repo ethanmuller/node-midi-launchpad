@@ -90,12 +90,12 @@ var Button = function(launchpad, note, y) {
     // });
 
     this.startBlink = function(color) {
-        this._blink_color = color;
-        this._grid._blinking.push(this);
+        this._blinkColor = color;
+        launchpad._grid._blinking.push(this);
 
         // If we're adding the first blinking LED, start the interval
-        if(this._grid._blinking.length == 1)
-            this._grid._blink_interval = setInterval(this._grid._tick, 500);
+        if(launchpad._grid._blinking.length == 1)
+            launchpad._grid._blink_interval = setInterval(launchpad._grid._tick, 500);
         this.trigger("state_change");
     };
 
